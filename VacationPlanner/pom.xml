@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hardik</groupId>
+  <artifactId>VacationPlanner</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>VacationPlanner</name>
+  <url>http://maven.apache.org</url>
+  <modules>
+  	<module>ejb-jar</module>
+    <module>war</module>
+    <module>ear</module>
+  </modules>
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-compiler-plugin</artifactId>
+  			<configuration>
+  				<source>1.6</source>
+  				<target>1.6</target>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>com.hardik</groupId>
+  			<artifactId>ear</artifactId>
+  			<version>1.0-SNAPSHOT</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.hardik</groupId>
+  			<artifactId>war</artifactId>
+  			<version>1.0-SNAPSHOT</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.hardik</groupId>
+  			<artifactId>ejb-jar</artifactId>
+  			<version>1.0-SNAPSHOT</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+   <repositories>
+  	<repository>
+  		<id>jboss</id>
+  		<name>JBoss Repository</name>
+        <url>http://repository.jboss.org/maven2/</url>  		
+  	</repository>
+  </repositories>
+</project>
