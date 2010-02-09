@@ -2,4 +2,4 @@
 .project
 .idea
 .idea/*
-.settings/*
+*/.settings/*
