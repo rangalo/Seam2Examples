@@ -2,5 +2,6 @@
 .project
 .idea
 .idea/*
+*/.settings
 */.settings/*
 .classpath
