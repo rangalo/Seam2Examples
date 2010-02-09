@@ -1,8 +1,8 @@
 */target/*
 .project
 **/.idea/*
-**/.settings/*
-*/.settings/*
+.settings
+.settings/*
 .classpath
 *.iml
 
