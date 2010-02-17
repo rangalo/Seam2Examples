@@ -7,4 +7,6 @@ target/*
 .settings/*
 .classpath
 *.iml
+*.ipr
+*.iws
 
