@@ -1,0 +1,52 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="golferForm">
+
+        <rich:panel>
+            <f:facet name="header">golfer</f:facet>
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name" required="true"
+                             value="#{golferHome.instance.name}"/>
+            </s:decorate>
+
+            <div style="clear:both"/>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{golferHome.persist}"
+                       rendered="#{!golferHome.managed}"/>
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{golferHome.update}"
+                       rendered="#{golferHome.managed}"/>
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{golferHome.remove}"
+                      immediate="true"
+                       rendered="#{golferHome.managed}"/>
+            <s:button propagation="end"
+                               id="cancel"
+                            value="Cancel"
+                             view="/golferList.xhtml"/>
+        </div>
+
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

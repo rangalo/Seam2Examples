@@ -1,0 +1,437 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Course Details</f:facet>
+
+        <s:decorate id="id" template="layout/display.xhtml">
+            <ui:define name="label">Id</ui:define>
+            <h:outputText value="#{courseHome.instance.id}"/>
+        </s:decorate>
+
+        <s:decorate id="description" template="layout/display.xhtml">
+            <ui:define name="label">Description</ui:define>
+            <h:outputText value="#{courseHome.instance.description}"/>
+        </s:decorate>
+
+        <s:decorate id="designer" template="layout/display.xhtml">
+            <ui:define name="label">Designer</ui:define>
+            <h:outputText value="#{courseHome.instance.designer}"/>
+        </s:decorate>
+
+        <s:decorate id="fairways" template="layout/display.xhtml">
+            <ui:define name="label">Fairways</ui:define>
+            <h:outputText value="#{courseHome.instance.fairways}"/>
+        </s:decorate>
+
+        <s:decorate id="greens" template="layout/display.xhtml">
+            <ui:define name="label">Greens</ui:define>
+            <h:outputText value="#{courseHome.instance.greens}"/>
+        </s:decorate>
+
+        <s:decorate id="name" template="layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{courseHome.instance.name}"/>
+        </s:decorate>
+
+        <s:decorate id="numHoles" template="layout/display.xhtml">
+            <ui:define name="label">Num holes</ui:define>
+            <h:outputText value="#{courseHome.instance.numHoles}"/>
+        </s:decorate>
+
+        <s:decorate id="signatureHole" template="layout/display.xhtml">
+            <ui:define name="label">Signature hole</ui:define>
+            <h:outputText value="#{courseHome.instance.signatureHole}"/>
+        </s:decorate>
+
+        <s:decorate id="yearBuilt" template="layout/display.xhtml">
+            <ui:define name="label">Year built</ui:define>
+            <h:outputText value="#{courseHome.instance.yearBuilt}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/CourseEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty courseFrom ? 'CourseList' : courseFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Facility</h:panelGroup>
+        </f:facet>
+    <div class="association" id="facilityParent">
+
+        <h:outputText value="There is no facility associated with this course."
+                   rendered="#{courseHome.instance.facility == null}"/>
+
+        <rich:dataTable var="_facility"
+                   value="#{courseHome.instance.facility}"
+                rendered="#{courseHome.instance.facility != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="facilityTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_facility.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Address</f:facet>
+                <h:outputText value="#{_facility.address}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">City</f:facet>
+                <h:outputText value="#{_facility.city}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Country</f:facet>
+                <h:outputText value="#{_facility.country}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">County</f:facet>
+                <h:outputText value="#{_facility.county}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_facility.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_facility.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Phone</f:facet>
+                <h:outputText value="#{_facility.phone}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Price range</f:facet>
+                <h:outputText value="#{_facility.priceRange}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">State</f:facet>
+                <h:outputText value="#{_facility.state}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{_facility.type}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Uri</f:facet>
+                <h:outputText value="#{_facility.uri}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Zip</f:facet>
+                <h:outputText value="#{_facility.zip}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewfacility"
+                     value="View"
+                      view="/Facility.xhtml">
+                    <f:param name="facilityId"
+                           value="#{_facility.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Holes</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="holesChildren">
+
+        <h:outputText value="There are no holes associated with this course."
+                   rendered="#{empty courseHome.holes}"/>
+
+        <rich:dataTable value="#{courseHome.holes}"
+                       var="_hole"
+                  rendered="#{not empty courseHome.holes}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="holesTable">
+            <rich:column sortBy="#{_hole.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_hole.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.LHandicap}">
+                <f:facet name="header">L handicap</f:facet>
+                <h:outputText value="#{_hole.LHandicap}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.LPar}">
+                <f:facet name="header">L par</f:facet>
+                <h:outputText value="#{_hole.LPar}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.MHandicap}">
+                <f:facet name="header">M handicap</f:facet>
+                <h:outputText value="#{_hole.MHandicap}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.MPar}">
+                <f:facet name="header">M par</f:facet>
+                <h:outputText value="#{_hole.MPar}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.name}">
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_hole.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.number}">
+                <f:facet name="header">Number</f:facet>
+                <h:outputText value="#{_hole.number}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selecthole"
+                     value="Select"
+                      view="/Hole.xhtml">
+                    <f:param name="holeId"
+                            value="#{_hole.id}"/>
+                    <f:param name="holeFrom" value="Course"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add hole"
+                view="/HoleEdit.xhtml">
+            <f:param name="courseId"
+                    value="#{courseHome.instance.id}"/>
+            <f:param name="holeFrom" value="Course"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Holes_1</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="holes_1Children">
+
+        <h:outputText value="There are no holes_1 associated with this course."
+                   rendered="#{empty courseHome.holes_1}"/>
+
+        <rich:dataTable value="#{courseHome.holes_1}"
+                       var="_hole"
+                  rendered="#{not empty courseHome.holes_1}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="holes_1Table">
+            <rich:column sortBy="#{_hole.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_hole.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.LHandicap}">
+                <f:facet name="header">L handicap</f:facet>
+                <h:outputText value="#{_hole.LHandicap}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.LPar}">
+                <f:facet name="header">L par</f:facet>
+                <h:outputText value="#{_hole.LPar}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.MHandicap}">
+                <f:facet name="header">M handicap</f:facet>
+                <h:outputText value="#{_hole.MHandicap}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.MPar}">
+                <f:facet name="header">M par</f:facet>
+                <h:outputText value="#{_hole.MPar}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.name}">
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_hole.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_hole.number}">
+                <f:facet name="header">Number</f:facet>
+                <h:outputText value="#{_hole.number}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selecthole"
+                     value="Select"
+                      view="/Hole.xhtml">
+                    <f:param name="holeId"
+                            value="#{_hole.id}"/>
+                    <f:param name="holeFrom" value="Course"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add hole"
+                view="/HoleEdit.xhtml">
+            <f:param name="courseId"
+                    value="#{courseHome.instance.id}"/>
+            <f:param name="holeFrom" value="Course"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Tee sets</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="teeSetsChildren">
+
+        <h:outputText value="There are no teeSets associated with this course."
+                   rendered="#{empty courseHome.teeSets}"/>
+
+        <rich:dataTable value="#{courseHome.teeSets}"
+                       var="_teeSet"
+                  rendered="#{not empty courseHome.teeSets}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="teeSetsTable">
+            <rich:column sortBy="#{_teeSet.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_teeSet.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.LCourseRating}">
+                <f:facet name="header">L course rating</f:facet>
+                <h:outputText value="#{_teeSet.LCourseRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.LSlopeRating}">
+                <f:facet name="header">L slope rating</f:facet>
+                <h:outputText value="#{_teeSet.LSlopeRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.MCourseRating}">
+                <f:facet name="header">M course rating</f:facet>
+                <h:outputText value="#{_teeSet.MCourseRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.MSlopeRating}">
+                <f:facet name="header">M slope rating</f:facet>
+                <h:outputText value="#{_teeSet.MSlopeRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.color}">
+                <f:facet name="header">Color</f:facet>
+                <h:outputText value="#{_teeSet.color}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.name}">
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_teeSet.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.pos}">
+                <f:facet name="header">Pos</f:facet>
+                <h:outputText value="#{_teeSet.pos}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectteeSet"
+                     value="Select"
+                      view="/TeeSet.xhtml">
+                    <f:param name="teeSetId"
+                            value="#{_teeSet.id}"/>
+                    <f:param name="teeSetFrom" value="Course"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add teeSet"
+                view="/TeeSetEdit.xhtml">
+            <f:param name="courseId"
+                    value="#{courseHome.instance.id}"/>
+            <f:param name="teeSetFrom" value="Course"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Tee sets_1</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="teeSets_1Children">
+
+        <h:outputText value="There are no teeSets_1 associated with this course."
+                   rendered="#{empty courseHome.teeSets_1}"/>
+
+        <rich:dataTable value="#{courseHome.teeSets_1}"
+                       var="_teeSet"
+                  rendered="#{not empty courseHome.teeSets_1}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="teeSets_1Table">
+            <rich:column sortBy="#{_teeSet.id}">
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_teeSet.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.LCourseRating}">
+                <f:facet name="header">L course rating</f:facet>
+                <h:outputText value="#{_teeSet.LCourseRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.LSlopeRating}">
+                <f:facet name="header">L slope rating</f:facet>
+                <h:outputText value="#{_teeSet.LSlopeRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.MCourseRating}">
+                <f:facet name="header">M course rating</f:facet>
+                <h:outputText value="#{_teeSet.MCourseRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.MSlopeRating}">
+                <f:facet name="header">M slope rating</f:facet>
+                <h:outputText value="#{_teeSet.MSlopeRating}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.color}">
+                <f:facet name="header">Color</f:facet>
+                <h:outputText value="#{_teeSet.color}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.name}">
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_teeSet.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_teeSet.pos}">
+                <f:facet name="header">Pos</f:facet>
+                <h:outputText value="#{_teeSet.pos}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectteeSet"
+                     value="Select"
+                      view="/TeeSet.xhtml">
+                    <f:param name="teeSetId"
+                            value="#{_teeSet.id}"/>
+                    <f:param name="teeSetFrom" value="Course"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add teeSet"
+                view="/TeeSetEdit.xhtml">
+            <f:param name="courseId"
+                    value="#{courseHome.instance.id}"/>
+            <f:param name="teeSetFrom" value="Course"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

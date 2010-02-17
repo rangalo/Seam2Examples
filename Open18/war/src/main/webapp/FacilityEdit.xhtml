@@ -1,0 +1,335 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="facility" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{facilityHome.managed ? 'Edit' : 'Add'} Facility</f:facet>
+
+
+            <s:decorate id="idField" template="layout/edit.xhtml">
+                <ui:define name="label">Id</ui:define>
+                <h:inputText id="id"
+                       required="true"
+                       disabled="#{facilityHome.managed}"
+                          value="#{facilityHome.instance.id}">
+                    <a:support event="onblur" reRender="idField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="addressField" template="layout/edit.xhtml">
+                <ui:define name="label">Address</ui:define>
+                <h:inputText id="address"
+                           size="50"
+                      maxlength="50"
+                          value="#{facilityHome.instance.address}">
+                    <a:support event="onblur" reRender="addressField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="cityField" template="layout/edit.xhtml">
+                <ui:define name="label">City</ui:define>
+                <h:inputText id="city"
+                           size="30"
+                      maxlength="30"
+                          value="#{facilityHome.instance.city}">
+                    <a:support event="onblur" reRender="cityField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="countryField" template="layout/edit.xhtml">
+                <ui:define name="label">Country</ui:define>
+                <h:inputText id="country"
+                           size="30"
+                      maxlength="30"
+                          value="#{facilityHome.instance.country}">
+                    <a:support event="onblur" reRender="countryField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="countyField" template="layout/edit.xhtml">
+                <ui:define name="label">County</ui:define>
+                <h:inputText id="county"
+                           size="30"
+                      maxlength="30"
+                          value="#{facilityHome.instance.county}">
+                    <a:support event="onblur" reRender="countyField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+
+            <s:decorate id="descriptionField" template="layout/edit.xhtml">
+                <ui:define name="label">Description</ui:define>
+                <h:inputTextarea id="description"
+                               cols="80"
+                               rows="6"
+                              value="#{facilityHome.instance.description}"/>
+            </s:decorate>
+
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{facilityHome.instance.name}">
+                    <a:support event="onblur" reRender="nameField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="phoneField" template="layout/edit.xhtml">
+                <ui:define name="label">Phone</ui:define>
+                <h:inputText id="phone"
+                           size="10"
+                      maxlength="10"
+                          value="#{facilityHome.instance.phone}">
+                    <a:support event="onblur" reRender="phoneField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="priceRangeField" template="layout/edit.xhtml">
+                <ui:define name="label">Price range</ui:define>
+                <h:inputText id="priceRange"
+                          value="#{facilityHome.instance.priceRange}">
+                    <a:support event="onblur" reRender="priceRangeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="stateField" template="layout/edit.xhtml">
+                <ui:define name="label">State</ui:define>
+                <h:inputText id="state"
+                           size="2"
+                      maxlength="2"
+                          value="#{facilityHome.instance.state}">
+                    <a:support event="onblur" reRender="stateField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="typeField" template="layout/edit.xhtml">
+                <ui:define name="label">Type</ui:define>
+                <h:inputText id="type"
+                       required="true"
+                           size="15"
+                      maxlength="15"
+                          value="#{facilityHome.instance.type}">
+                    <a:support event="onblur" reRender="typeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="uriField" template="layout/edit.xhtml">
+                <ui:define name="label">Uri</ui:define>
+                <h:inputTextarea id="uri"
+                               cols="80"
+                               rows="3"
+                              value="#{facilityHome.instance.uri}"/>
+            </s:decorate>
+
+
+            <s:decorate id="zipField" template="layout/edit.xhtml">
+                <ui:define name="label">Zip</ui:define>
+                <h:inputText id="zip"
+                           size="5"
+                      maxlength="5"
+                          value="#{facilityHome.instance.zip}">
+                    <a:support event="onblur" reRender="zipField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{facilityHome.persist}"
+                       disabled="#{!facilityHome.wired}"
+                       rendered="#{!facilityHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{facilityHome.update}"
+                       rendered="#{facilityHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{facilityHome.remove}"
+                      immediate="true"
+                       rendered="#{facilityHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Facility.xhtml"
+                rendered="#{facilityHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty facilityFrom ? 'FacilityList' : facilityFrom}.xhtml"
+                rendered="#{!facilityHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Courses">
+        <h:form styleClass="association" id="coursesChildren">
+
+            <h:outputText value="There are no courses associated with this facility."
+                       rendered="#{empty facilityHome.courses}"/>
+
+            <rich:dataTable value="#{facilityHome.courses}"
+                           var="_course"
+                      rendered="#{not empty facilityHome.courses}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="coursesTable">
+                <rich:column sortBy="#{_course.id}">
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{_course.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.description}">
+                    <f:facet name="header">Description</f:facet>
+                    <h:outputText value="#{_course.description}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.designer}">
+                    <f:facet name="header">Designer</f:facet>
+                    <h:outputText value="#{_course.designer}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.fairways}">
+                    <f:facet name="header">Fairways</f:facet>
+                    <h:outputText value="#{_course.fairways}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.greens}">
+                    <f:facet name="header">Greens</f:facet>
+                    <h:outputText value="#{_course.greens}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.name}">
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{_course.name}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.numHoles}">
+                    <f:facet name="header">Num holes</f:facet>
+                    <h:outputText value="#{_course.numHoles}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.signatureHole}">
+                    <f:facet name="header">Signature hole</f:facet>
+                    <h:outputText value="#{_course.signatureHole}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.yearBuilt}">
+                    <f:facet name="header">Year built</f:facet>
+                    <h:outputText value="#{_course.yearBuilt}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{facilityHome.managed}" id="courses">
+        <div class="actionButtons">
+            <s:button id="addcourse"
+                   value="Add course"
+                    view="/CourseEdit.xhtml"
+             propagation="none">
+                 <f:param name="facilityId"
+                         value="#{facilityHome.instance.id}"/>
+                 <f:param name="courseFrom" value="Facility"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Courses_1">
+        <h:form styleClass="association" id="courses_1Children">
+
+            <h:outputText value="There are no courses_1 associated with this facility."
+                       rendered="#{empty facilityHome.courses_1}"/>
+
+            <rich:dataTable value="#{facilityHome.courses_1}"
+                           var="_course"
+                      rendered="#{not empty facilityHome.courses_1}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="courses_1Table">
+                <rich:column sortBy="#{_course.id}">
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{_course.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.description}">
+                    <f:facet name="header">Description</f:facet>
+                    <h:outputText value="#{_course.description}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.designer}">
+                    <f:facet name="header">Designer</f:facet>
+                    <h:outputText value="#{_course.designer}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.fairways}">
+                    <f:facet name="header">Fairways</f:facet>
+                    <h:outputText value="#{_course.fairways}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.greens}">
+                    <f:facet name="header">Greens</f:facet>
+                    <h:outputText value="#{_course.greens}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.name}">
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{_course.name}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.numHoles}">
+                    <f:facet name="header">Num holes</f:facet>
+                    <h:outputText value="#{_course.numHoles}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.signatureHole}">
+                    <f:facet name="header">Signature hole</f:facet>
+                    <h:outputText value="#{_course.signatureHole}"/>
+                </rich:column>
+                <rich:column sortBy="#{_course.yearBuilt}">
+                    <f:facet name="header">Year built</f:facet>
+                    <h:outputText value="#{_course.yearBuilt}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{facilityHome.managed}" id="courses_1">
+        <div class="actionButtons">
+            <s:button id="addcourse"
+                   value="Add course"
+                    view="/CourseEdit.xhtml"
+             propagation="none">
+                 <f:param name="facilityId"
+                         value="#{facilityHome.instance.id}"/>
+                 <f:param name="courseFrom" value="Facility"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

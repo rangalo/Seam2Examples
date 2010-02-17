@@ -1,0 +1,88 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a="http://richfaces.org/a4j"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+
+        <h:form id="registerActionForm" styleClass="edit">
+
+            <rich:panel>
+                 <f:facet name="header">Open 18 Member Registration</f:facet>
+
+                 <s:decorate id="usernameField" template="layout/edit.xhtml">
+                    <ui:define name="label">Username</ui:define>
+                    <h:inputText id="username" value="#{newGolfer.username}" required="true" />
+                </s:decorate>
+
+                 <s:decorate id="firstNameField" template="layout/edit.xhtml">
+                    <ui:define name="label">First Name</ui:define>
+                    <h:inputText id="firstName" value="#{newGolfer.firstName}" required="true" />
+                </s:decorate>
+
+                 <s:decorate id="lastNameField" template="layout/edit.xhtml">
+                    <ui:define name="label">Last Name</ui:define>
+                    <h:inputText id="lastName" value="#{newGolfer.lastName}" required="true" />
+                </s:decorate>
+
+                 <s:decorate id="emailField" template="layout/edit.xhtml">
+                    <ui:define name="label">Email Address</ui:define>
+                    <h:inputText id="emailAddress" value="#{newGolfer.emailAddress}" required="true" />
+                </s:decorate>
+
+                 <s:decorate id="passwordField" template="layout/edit.xhtml">
+                    <ui:define name="label">Password</ui:define>
+                    <h:inputText id="password" value="#{passwordBean.password}" required="true" />
+                </s:decorate>
+
+                 <s:decorate id="confirmField" template="layout/edit.xhtml">
+                    <ui:define name="label">Confirm Password</ui:define>
+                    <h:inputText id="confirm" value="#{passwordBean.confirm}" required="true" />
+                </s:decorate>
+
+                 <s:decorate id="dateOfBirthField" template="layout/edit.xhtml">
+                    <ui:define name="label">Date of Birth</ui:define>
+                    <rich:calendar id="dateOfBirth" value="#{newGolfer.dateOfBirth}" />
+                </s:decorate>
+
+                 <s:decorate id="genderField" template="layout/edit.xhtml">
+                    <ui:define name="label">Gender</ui:define>
+                    <h:selectOneRadio id="gender" value="#{newGolfer.gender}" >
+                        <s:convertEnum/>
+                        <s:enumItem enumValue="MALE" label="Male"/>
+                        <s:enumItem enumValue="FEMALE" label="Female" />
+                    </h:selectOneRadio>
+                </s:decorate>
+
+                 <s:decorate id="locationField" template="layout/edit.xhtml">
+                    <ui:define name="label">Location</ui:define>
+                    <h:inputText id="location" value="#{newGolfer.location}" required="true" />
+                </s:decorate>
+
+                 <div class="clear:both">
+                    <span class="required">*</span>
+                    required fields
+                 </div>
+            </rich:panel>
+
+            <div class="actionButtons">
+                <h:commandButton id="cancel" value="Cancel" action="home" immediate="true" />
+
+                <h:commandButton id="register" value="register!"
+                                 action="#{registerAction.register}">
+                    <s:defaultAction/>
+                </h:commandButton>
+            </div>
+
+        </h:form>
+
+</ui:define>
+
+</ui:composition>
