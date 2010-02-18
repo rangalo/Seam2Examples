@@ -31,10 +31,66 @@
   		<version>1.0-SNAPSHOT</version>
   		<type>war</type>
   	</dependency>
+
+    <dependency>
+      <groupId>org.jboss.seam</groupId>
+      <artifactId>jboss-seam</artifactId>
+      <version>2.2.0.GA</version>
+      <type>ejb</type>
+    </dependency>
+    <dependency>
+        <groupId>org.jboss.el</groupId>
+        <artifactId>jboss-el</artifactId>
+        <version>2.0.1.GA</version>
+        <type>jar</type>
+    </dependency>
+    <dependency>
+        <groupId>org.richfaces.framework</groupId>
+        <artifactId>richfaces-api</artifactId>
+        <version>3.3.1.GA</version>
+        <type>jar</type>
+    </dependency>
+    <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.7.0</version>
+        <type>jar</type>
+    </dependency>
+    <dependency>
+        <groupId>commons-digester</groupId>
+        <artifactId>commons-digester</artifactId>
+        <version>1.8.1</version>
+        <type>jar</type>
+    </dependency>
   </dependencies>
   <build>
   	<finalName>Open18</finalName>
   	<plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-ds-xml</id>
+                    <phase>process-resources</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>target/Open18</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>src/main/resources</directory>
+                                <filtering>true</filtering>
+                                <includes>
+                                    <include>open18-ds.xml</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
   		<plugin>
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven-ear-plugin</artifactId>
@@ -63,7 +119,9 @@
   				<jboss>
   					<version>5</version>
   					<loader-repository>seam.jboss.org:loader=Open18</loader-repository>
-                    <data-source>open18-ds.xml</data-source>
+                    <data-sources>
+                        <data-source>open18-ds.xml</data-source>
+                    </data-sources>
   				</jboss>
   			</configuration>
   		</plugin>
