@@ -42,6 +42,43 @@
             <version>1.1.2</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.jboss.seam</groupId>
+            <artifactId>jboss-seam-ui</artifactId>
+            <version>2.2.0.GA</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <!-- ** -->
+                <exclusion>
+                    <groupId>org.jboss.seam</groupId>
+                    <artifactId>jboss-seam</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.el</groupId>
+                    <artifactId>jboss-el</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.seam</groupId>
+                    <artifactId>jboss-seam-jul</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-beanutils</groupId>
+                    <artifactId>commons-beanutils</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-digester</artifactId>
+                    <groupId>commons-digester</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.jboss.seam</groupId>
             <artifactId>jboss-seam-debug</artifactId>
@@ -78,17 +115,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-         <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>jboss-seam-ui</artifactId>
-            <version>2.0.1.GA</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.seam</groupId>
-                    <artifactId>jboss-seam</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
 
           <dependency>
             <groupId>org.richfaces.framework</groupId>
@@ -178,22 +205,8 @@
             <artifactId>urlrewritefilter</artifactId>
             <version>3.1.0</version>
         </dependency>
-
-       
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
         
-        <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>jboss-seam-ui</artifactId>
-            <version>2.2.0.GA</version>
-            <scope>provided</scope>
-        </dependency>
+       
         <dependency>
             <groupId>com.sun.facelets</groupId>
             <artifactId>jsf-facelets</artifactId>

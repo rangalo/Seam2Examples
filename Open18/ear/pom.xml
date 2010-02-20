@@ -173,11 +173,7 @@
             <artifactId>drools-compiler</artifactId>
             <version>5.0.1</version>
         </dependency>
-
-
-
-
-       <dependency>
+        <dependency>
             <groupId>org.jboss.el</groupId>
             <artifactId>jboss-el</artifactId>
             <version>1.0_02.CR4</version>
@@ -188,7 +184,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
       <dependency>
           <groupId>commons-beanutils</groupId>
           <artifactId>commons-beanutils</artifactId>
