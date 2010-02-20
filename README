@@ -1,4 +1,11 @@
-These are the examples of the book
+These are 2 the examples of the book
 http://www.packtpub.com/seam-2-x-web-development
+
+These 2 are basic seam examples with ejbs.
+
+The third one is Open16 from Seam In Action book.
+It is a bit involved example uses many other things like 
+facelets, persistence etc.
+
 
 I have tried to mavenise the examples 
