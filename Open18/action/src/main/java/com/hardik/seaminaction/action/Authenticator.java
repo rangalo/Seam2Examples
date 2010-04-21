@@ -22,7 +22,7 @@ public class Authenticator {
 		//write your authentication logic here,
 		//return true if the authentication was
 		//successful, false otherwise
-		if ("admin".equals(credentials.getUsername())) {
+		if ("admin".equals(credentials.getPassword())) {
 			identity.addRole("admin");
 			return true;
 		}

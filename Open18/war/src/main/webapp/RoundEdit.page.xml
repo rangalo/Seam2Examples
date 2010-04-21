@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+
+    <param name="teeSetId" value="#{teeSetHome.teeSetId}" />
+    <param name="roundFrom" />
+    <action execute="#{roundHome.wire}" />
+    <param name="roundId" value="#{roundHome.id}" converterId="javax.faces.Long"/>
+
+    <navigation from-action="#{roundHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/Round.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

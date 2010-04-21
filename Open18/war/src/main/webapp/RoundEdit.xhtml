@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+    <h:form id="roundform">
+        <rich:panel>
+            <f:facet name="header>">
+                #{roundHome.managed ? 'Edit' : 'Add' } Round
+            </f:facet>
+            <s:decorate id="dateField" template="layout/edit.xhtml">
+                <ui:define name="label">Date:</ui:define>
+                <rich:calendar id="date" datePattern="dd/MM/yyyy" value="#{round.date}"/>
+            </s:decorate>
+
+            <s:decorate id="notesField" template="layout/edit.xhtml">
+                <ui:define name="label">Notes:</ui:define>
+                <h:inputTextarea id="notes" cols="80" rows="3" value="#{round.notes}" />
+            </s:decorate>
+
+            <s:decorate id="totalScoreField" template="layout/edit.xhtml">
+                <ui:define name="label">Total Score:</ui:define>
+                <h:inputText id="totalScore" value="#{round.totalScore}" />
+            </s:decorate>
+
+            <s:decorate id="weatherField" template="layout/edit.xhtml">
+                <ui:define name="label">Weather:</ui:define>
+                <h:selectOneMenu id="weather" value="#{round.weather}">
+                    <s:selectItems var="_weather" value="#{weatherCategories}" label="#{_weather.label}"
+                                   noSelectionLabel="-- Select --" />
+                    <s:convertEnum/>
+                </h:selectOneMenu>
+            </s:decorate>
+
+            <div style="clear: both;">
+                <span class="required">*</span> required fields
+            </div>
+        </rich:panel>
+
+        <div class="actionButtons">
+            <h:commandButton id="save" value="Save"
+                             action="#{roundHome.persist}"
+                             rendered="#{!roundHome.managed}" 
+                             disabled="#{!roundHome.wired}"  />
+            
+            <h:commandButton id="update" value="Update" action="#{roundHome.update}"
+                             rendered="#{roundHome.managed}" />
+
+            <h:commandButton id="delete" value="Delete" action="#{roundHome.delete}"
+                             rendered="#{roundHome.managed}" />
+
+            <s:button id="discard" value="Discard changes" propagation="end"
+                      view="/Round.xhtml" rendered="#{roundHome.managed}" />
+
+            <s:button id="cancel" value="Cancel" propagation="end"
+                      view="/#{empty roundFrom ? 'RoundList' : roundFrom}.xhtml"
+                      rendered="#{!roundHome.managed}" />
+
+        </div>
+
+    </h:form>
+
+    <rich:tabPanel>
+        <rich:tab label="Tee Set">
+            <div class="association">
+                <h:outputText value="Tee set not selected" rendered="#{round.teeSet == null}" />
+                <rich:dataTable var="_teeSet" value="#{round.teeSet}" rendered="#{round.teeSet != null}">
+                    <h:column>
+                        <f:facet name="header">Course</f:facet>#{_teeSet.course.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Color</f:facet>
+                        <div title="#{_teeSet.color}" style="background-color: #{_teeSet.color}" />
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Position</f:facet>#{_teeSet.pos}
+                    </h:column>
+                </rich:dataTable>
+            </div>
+        </rich:tab>
+    </rich:tabPanel>
+
+</ui:define>
+</ui:composition>

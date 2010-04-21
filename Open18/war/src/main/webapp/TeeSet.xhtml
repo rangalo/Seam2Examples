@@ -242,6 +242,11 @@
                     value="#{teeSetHome.instance.id}"/>
             <f:param name="teeFrom" value="TeeSet"/>
         </s:button>
+
+        <s:button value="Add round" view="/RoundEdit.xhtml">
+            <f:param name="teeSetId" value="#{teeSetHome.instance.id}" />
+            <f:param name="roundfrom" value="TeeSet" />
+        </s:button>
     </div>
     </rich:tab>
 </rich:tabPanel>
