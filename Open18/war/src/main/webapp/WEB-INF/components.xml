@@ -61,7 +61,7 @@
       <property name="charset">UTF-8</property>
    </component>
 
-    <factory name="round" value="#{roundHome.instance}" />
+    <factory name="round" value="#{roundHome.instance}" scope="conversation" />
 
     <framework:entity-query name="currentGolferQuery"
                             ejbql="select g from Golfer g where g.username = '#{identity.username}'" />

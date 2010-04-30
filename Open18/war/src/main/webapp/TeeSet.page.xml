@@ -10,7 +10,4 @@
    <param name="facilityFrom"/>
    <param name="facilityId" value="#{facilityHome.facilityId}"/>
 
-
-
-
 </page>

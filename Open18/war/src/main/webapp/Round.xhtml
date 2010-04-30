@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+    <h:form id="roundform">
+        <rich:panel>
+            <f:facet name="header>">Round</f:facet>
+            <s:decorate id="date" template="layout/display.xhtml">
+                <ui:define name="label">Date:</ui:define>
+                <h:outputText value="#{round.date}">
+                    <s:convertDateTime type="date" />
+                </h:outputText>
+            </s:decorate>
+
+            <s:decorate id="golfer" template="layout/display.xhtml">
+                <ui:define name="label">Golfer:</ui:define>
+                #{round.golfer.name}
+            </s:decorate>
+
+            <s:decorate id="totalScore" template="layout/display.xhtml">
+                <ui:define name="label">Total Score:</ui:define>
+                #{round.totalScore}
+            </s:decorate>
+
+            <s:decorate id="weather" template="layout/display.xhtml">
+                <ui:define name="label">Weather:</ui:define>
+                #{round.weather}
+            </s:decorate>
+
+            <s:decorate id="notes" template="layout/display.xhtml">
+                <ui:define name="label">Notes:</ui:define>
+                #{round.notes}
+            </s:decorate>
+
+            <div style="clear:both"/>
+
+        </rich:panel>
+
+
+        <div class="actionButtons">
+            <s:button id="edit" view="/RoundEdit.xhtml" value="Edit" />    
+        </div>
+
+
+
+        <rich:tabPanel>
+            <rich:tab label="Tee Set">
+                <div class="association">
+                    <h:outputText value="Tee set not selected" rendered="#{round.teeSet == null}" />
+                    <rich:dataTable var="_teeSet" value="#{round.teeSet}" rendered="#{round.teeSet != null}">
+                        <h:column>
+                            <f:facet name="header">Course</f:facet>#{_teeSet.course.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Color</f:facet>#{_teeSet.color}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Position</f:facet>#{_teeSet.pos}
+                        </h:column>
+                    </rich:dataTable>
+                </div>
+            </rich:tab>
+        </rich:tabPanel>
+    </h:form>
+</ui:define>
+</ui:composition>

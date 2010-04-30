@@ -3,9 +3,11 @@ package com.hardik.seaminaction.action;
 import com.hardik.seaminaction.model.Golfer;
 import com.hardik.seaminaction.model.Round;
 import com.hardik.seaminaction.model.TeeSet;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.web.RequestParameter;
 import org.jboss.seam.framework.EntityHome;
 import org.jboss.seam.log.Log;
@@ -27,11 +29,25 @@ public class RoundHome extends EntityHome<Round>{
     @In(create = true)
     private TeeSetHome teeSetHome;
 
+    @Override
+    public String persist() {
+
+        logger.info("Persist called");
+        if (null != getInstance().getTeeSet() ) {
+            logger.info("teeSet not null in persist");
+        } else {
+            logger.info("teeSet null in persist");            
+        }
+        String retVal =  super.persist();    //To change body of overridden methods use File | Settings | File Templates.
+        return retVal;
+    }
+
     @Logger
     private Log logger;
 
     public void wire() {
 
+        logger.info("wire called");
         TeeSet teeSet = teeSetHome.getDefinedInstance();
 
 
@@ -42,12 +58,14 @@ public class RoundHome extends EntityHome<Round>{
     }
 
     public boolean isWired() {
+        logger.info("is wired called");
         if(null == getInstance().getTeeSet()) {
-            logger.info("wired teeSet instance is null !");
+            logger.info("wired teeSet instance is null, the button will be disabled !");
             return false;
         }
         else {
-            logger.info("wired teeSet instance is NOT null !");
+            logger.info("wired teeSet instance is NOT null, the button will be enabled !");
+            logger.info("teeSet color: "+getInstance().getTeeSet().getColor());
             return true;
         }
     }
@@ -64,6 +82,4 @@ public class RoundHome extends EntityHome<Round>{
         round.setDate(new java.sql.Date(System.currentTimeMillis()));
         return round;
     }
-
-   
 }
