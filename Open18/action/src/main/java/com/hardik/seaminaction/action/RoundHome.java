@@ -26,21 +26,9 @@ public class RoundHome extends EntityHome<Round>{
     @In(required = false)
     private Golfer currentGolfer;
 
+
     @In(create = true)
     private TeeSetHome teeSetHome;
-
-    @Override
-    public String persist() {
-
-        logger.info("Persist called");
-        if (null != getInstance().getTeeSet() ) {
-            logger.info("teeSet not null in persist");
-        } else {
-            logger.info("teeSet null in persist");            
-        }
-        String retVal =  super.persist();    //To change body of overridden methods use File | Settings | File Templates.
-        return retVal;
-    }
 
     @Logger
     private Log logger;
@@ -72,7 +60,14 @@ public class RoundHome extends EntityHome<Round>{
 
     @RequestParameter
     public void setRoundId(Long id) {
+        logger.info("in Setter RoundId is: " + id);
         super.setId(id);
+    }
+
+    public Long getRoundId() {
+        Long id = (Long) getId();
+        logger.info("Setting RoundId : " + id);
+        return id;
     }
 
     @Override
@@ -80,6 +75,23 @@ public class RoundHome extends EntityHome<Round>{
         Round round = super.createInstance();
         round.setGolfer(currentGolfer);
         round.setDate(new java.sql.Date(System.currentTimeMillis()));
+        logger.info("Created a Round with roundId: " + round.getId());
         return round;
+    }
+
+    @Override
+    protected Round loadInstance() {
+
+        logger.info("loadInstance for id: " + getId());
+        
+        return (Round) getEntityManager().createQuery(
+          "select r from Round r " +
+          "join fetch r.golfer g "  +
+          "join fetch r.teeSet ts " +
+          "join fetch ts.course c " +
+          "where r.id = :id ")
+          .setParameter("id",getId())
+          .getSingleResult();
+
     }
 }

@@ -16,31 +16,38 @@
     <h:form id="roundform">
         <rich:panel>
             <f:facet name="header>">Round</f:facet>
+            <s:decorate id="id" template="layout/display.xhtml">
+                <ui:define name="label">Id:</ui:define>
+                <h:outputText value="#{null == roundHome.id ? 'null' : roundHome.id}">
+                    <s:convertDateTime type="date" />
+                </h:outputText>
+            </s:decorate>
+
             <s:decorate id="date" template="layout/display.xhtml">
                 <ui:define name="label">Date:</ui:define>
-                <h:outputText value="#{round.date}">
+                <h:outputText value="#{roundHome.instance.date}">
                     <s:convertDateTime type="date" />
                 </h:outputText>
             </s:decorate>
 
             <s:decorate id="golfer" template="layout/display.xhtml">
                 <ui:define name="label">Golfer:</ui:define>
-                #{round.golfer.name}
+                #{roundHome.instance.golfer.name}
             </s:decorate>
 
             <s:decorate id="totalScore" template="layout/display.xhtml">
                 <ui:define name="label">Total Score:</ui:define>
-                #{round.totalScore}
+                #{roundHome.instance.totalScore}
             </s:decorate>
 
             <s:decorate id="weather" template="layout/display.xhtml">
                 <ui:define name="label">Weather:</ui:define>
-                #{round.weather}
+                #{roundHome.instance.weather}
             </s:decorate>
 
             <s:decorate id="notes" template="layout/display.xhtml">
                 <ui:define name="label">Notes:</ui:define>
-                #{round.notes}
+                #{roundHome.instance.notes}
             </s:decorate>
 
             <div style="clear:both"/>
@@ -49,7 +56,7 @@
 
 
         <div class="actionButtons">
-            <s:button id="edit" view="/RoundEdit.xhtml" value="Edit" />    
+            <s:button id="edit" view="/RoundEdit.xhtml" value="Edit" />
         </div>
 
 
@@ -57,8 +64,8 @@
         <rich:tabPanel>
             <rich:tab label="Tee Set">
                 <div class="association">
-                    <h:outputText value="Tee set not selected" rendered="#{round.teeSet == null}" />
-                    <rich:dataTable var="_teeSet" value="#{round.teeSet}" rendered="#{round.teeSet != null}">
+                    <h:outputText value="Tee set not selected" rendered="#{roundHome.instance.teeSet == null}" />
+                    <rich:dataTable var="_teeSet" value="#{roundHome.instance.teeSet}" rendered="#{roundHome.instance.teeSet != null}">
                         <h:column>
                             <f:facet name="header">Course</f:facet>#{_teeSet.course.name}
                         </h:column>
